@@ -1,6 +1,75 @@
 #include <stdio.h>
 #include <string.h>
 
+
+typedef struct{
+    char MatteResultat;
+    char SvenskaResultat;
+    char EngelskaResultat;
+    char DanskaResultat;
+    char GeografiResultat;
+    char namn[100];
+} StudentGrade;
+
+int getGradePoints(char grade){
+    if(grade == 'i' || grade == 'I')
+        return 0;
+    if(grade == 'g' || grade == 'G')
+        return 50;
+    if(grade == 'm' || grade == 'M')
+        return 100;
+    return 0;
+}
+
+char inputResult(const char *kursName){
+    printf("Ang resultat för kurs %s:", kursName);
+    char ch;
+    scanf(" %c", &ch);
+    return ch;
+}
+
+void todaydemoStruct(){
+    StudentGrade studenter[3];
+    for(int row = 0; row < 3; row++){
+        printf("Vad heter studenten:");
+        scanf(" %s", studenter[row].namn);
+
+        studenter[row].MatteResultat = inputResult("Matte") ;
+        studenter[row].SvenskaResultat = inputResult("Svenska") ;
+        studenter[row].DanskaResultat = inputResult("Danska") ;
+        studenter[row].EngelskaResultat = inputResult("Engelska") ;
+        studenter[row].GeografiResultat = inputResult("Geografi") ;
+        // printf("Ang resultat för kurs Matte:");
+        // scanf(" %c", &studenter[row].MatteResultat);
+        
+        // printf("Ang resultat för kurs Svenska:");
+        // scanf(" %c", &studenter[row].SvenskaResultat);
+
+        // printf("Ang resultat för kurs Engelska:");
+        // scanf(" %c", &studenter[row].EngelskaResultat);
+
+        // printf("Ang resultat för kurs Danska:");
+        // scanf(" %c", &studenter[row].DanskaResultat);
+        
+        // printf("Ang resultat för kurs Geografi:");
+        // scanf(" %c", &studenter[row].GeografiResultat);
+    }
+    
+    for(int row = 0; row < 3; row++){
+        float sum = 0;
+        sum += getGradePoints(studenter[row].DanskaResultat);
+        sum += getGradePoints(studenter[row].EngelskaResultat);
+        sum += getGradePoints(studenter[row].GeografiResultat);
+        sum += getGradePoints(studenter[row].MatteResultat);
+        sum += getGradePoints(studenter[row].SvenskaResultat);
+        printf("Medelbetyg student %s är %.2f",studenter[row].namn, sum/5 );
+    }
+
+    
+
+}
+
+
 #define STUDENTER 2
 #define COURSES 5
 #define COURSES_MATH 0
@@ -96,6 +165,7 @@ void temps2(){
 
 
 int main(){
+    todaydemoStruct();
     todaysdemo();
     temps2();
     int c[2][3] = {
