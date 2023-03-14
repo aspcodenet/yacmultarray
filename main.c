@@ -1,10 +1,54 @@
 #include <stdio.h>
 #include <string.h>
 
-//1.tvådimensionell shackbräde 
-//2. temperaturer veckans alla dar - för många veckor
-//3. Vi snyggar till med: DEFINE
-//4. Tre olika städer också - three dimensional
+#define STUDENTER 2
+#define COURSES 5
+#define COURSES_MATH 0
+#define COURSES_SWEDISH 1
+#define COURSES_ENGLISH 2
+#define COURSES_DANISH 3
+#define COURSES_GEOGRAPHY 4
+
+void todaysdemo(){
+    // tvådimensionell array  bygg ett betygsregister
+    // Kurs Matte	Kurs svenska	Kurs Engelska	Kurs danska	Kurs Geografi
+    // Kalle Lisa Nisse Maria
+
+    char studentGrades[STUDENTER][COURSES];
+    studentGrades[2][COURSES_DANISH] = 'G';
+    studentGrades[0][COURSES_SWEDISH] = 'I';
+
+    for(int row = 0; row < STUDENTER; row++){
+        printf("Student %d\n", row+1);
+        for(int col = 0; col < COURSES; col++){
+            printf("Ang resultat för kurs %d:", col+1);
+            scanf(" %c", &studentGrades[row][col]);
+        }
+    }
+   // I = 0, G = 50, M = 100
+    for(int row = 0; row < STUDENTER; row++){
+        float sum = 0;
+        for(int col = 0; col < COURSES; col++){
+            char grade = studentGrades[row][col];               
+            if(grade == 'i' || grade == 'I')
+                sum += 0;
+            else if(grade == 'g' || grade == 'G')
+                sum += 50;
+            else if(grade == 'm' || grade == 'M')
+                sum += 100;
+        }
+        printf("Medelbetyg student %d är %.2f",row+1, sum/COURSES );
+    }
+
+
+
+
+
+
+    // dagens tröst/peptalk
+    // koda om som enkel array fast med structs
+}
+
 
 
 #define WEEK 2
@@ -52,6 +96,7 @@ void temps2(){
 
 
 int main(){
+    todaysdemo();
     temps2();
     int c[2][3] = {
             {1, 3, 0},
